@@ -1,0 +1,7 @@
+services:
+  nextjs-app:
+    build: .
+    ports:
+      - '6004:6004'
+    environment:
+      NEXT_PUBLIC_API_PROVIDER_URL: 'http://localhost:6002'
