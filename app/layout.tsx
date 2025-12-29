@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TopNav from '@/src/components/TopNav';
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +25,13 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex flex-1 flex-col overflow-hidden px-4 py-6">
           <div className="flex-none w-full">
-            <TopNav />
+            <Suspense fallback={<div className="flex-1 overflow-y-auto p-6 md:p-12">Loading...</div>}>
+              <TopNav />
+            </Suspense>
           </div>
-          <div className="flex-1 overflow-y-auto p-6 md:p-12">{children}</div>
+          <Suspense fallback={<div className="flex-1 overflow-y-auto p-6 md:p-12">Loading...</div>}>
+            <div className="flex-1 overflow-y-auto p-6 md:p-12">{children}</div>
+          </Suspense>
         </div>
       </body>
     </html>

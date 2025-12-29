@@ -40,8 +40,9 @@ export default function SearchPage() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        const providerUrl = process.env.NEXT_PUBLIC_API_PROVIDER_URL || "http://localhost:3001";
         const response = await fetch(
-          `http://localhost:3001/list?search=${encodeURIComponent(query)}`,
+          `${providerUrl}/list?search=${encodeURIComponent(query)}`,
           { signal: controller.signal }
         );
 
