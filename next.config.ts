@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: getRemotePatterns(),
   },
+  output: 'standalone',
 };
 
 
