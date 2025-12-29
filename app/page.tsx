@@ -29,18 +29,12 @@ export default function SearchPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!query) {
-      setResults([]);
-      setIsLoading(false);
-      return;
-    }
-
     const controller = new AbortController();
 
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const providerUrl = process.env.NEXT_PUBLIC_API_PROVIDER_URL || "http://localhost:3001";
+        const providerUrl = process.env.NEXT_PUBLIC_API_PROVIDER_URL;
         const response = await fetch(
           `${providerUrl}/list?search=${encodeURIComponent(query)}`,
           { signal: controller.signal }
@@ -84,16 +78,6 @@ export default function SearchPage() {
 
     return () => controller.abort();
   }, [query]);
-
-  if (!query) {
-    return (
-      <div className="container mx-auto px-4 py-6">
-        <div className="max-w-5xl mt-4 mx-auto">
-          <p className="text-center font-black text-3xl">Please enter a search query.</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto px-4 py-6">

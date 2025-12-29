@@ -13,11 +13,9 @@ export default function TopNav() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget as HTMLFormElement);
-    const search = formData.get('search') as string;
+    const search = formData.get('search') as string || '';
     
-    if (search) {
-      router.push(`/?search=${encodeURIComponent(search)}`);
-    }
+    router.push(`/?search=${encodeURIComponent(search)}`);
   };
 
   return (
