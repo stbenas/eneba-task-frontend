@@ -1,7 +1,9 @@
 services:
   nextjs-app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_PROVIDER_URL: ${NEXT_PUBLIC_API_PROVIDER_URL:-http://localhost:6003}
     ports:
       - '6004:6004'
-    environment:
-      NEXT_PUBLIC_API_PROVIDER_URL: 'http://localhost:6002'

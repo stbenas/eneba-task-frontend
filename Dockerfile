@@ -17,7 +17,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NEXT_PUBLIC_API_PROVIDER_URL="http://localhost:6003"
+ARG NEXT_PUBLIC_API_PROVIDER_URL
+ENV NEXT_PUBLIC_API_PROVIDER_URL=${NEXT_PUBLIC_API_PROVIDER_URL}
 
 RUN npm run build
 
